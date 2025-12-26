@@ -1,17 +1,30 @@
-import { Body, Controller, Get, Param, Post, Query, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  Put,
+  Delete,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { ProfilesService } from './profiles.service';
 
 @Controller('profiles') //this is our route which is like this /profiles
 export class ProfilesController {
+  constructor(private ProfilesService: ProfilesService) {}
   @Get() //this is our get route
-  findAll(@Query('name') name: String) {
+  findAll() {
     //as in the req url the query is always in string, so we must pass the string location inside query decorator then we are also settign the type of location as we are using ts
-    return [{ name }];
+    return this.ProfilesService;
   }
   @Get(':id') //as the id is passed in url as param as :id
   findOne(@Param('id') id: String) {
-    return [{ id }];
+    return this.ProfilesService.findOne(id);
   }
   @Post() //here we are implementing the post method
   create(@Body() CreateProfileDto: CreateProfileDto) {
@@ -31,5 +44,11 @@ export class ProfilesController {
       name: UpdateProfileDto.name,
       description: UpdateProfileDto.description,
     };
+  }
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id') id: string) {
+    //here we are using Delete method with function remove
+    return {};
   }
 }
