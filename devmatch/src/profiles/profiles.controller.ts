@@ -8,21 +8,24 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ProfilesService } from './profiles.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
+import type { UUID } from 'crypto';
 @Controller('profiles') //this is our route which is like this /profiles
 export class ProfilesController {
-  constructor(private ProfilesService: ProfilesService) {}  //here as the data variable in profileservice is private, we are using constructor inorder to access this private data var
+  constructor(private ProfilesService: ProfilesService) {} //here as the data variable in profileservice is private, we are using constructor inorder to access this private data var
   @Get() //this is our get route
   findAll() {
     //as in the req url the query is always in string, so we must pass the string location inside query decorator then we are also settign the type of location as we are using ts
     return this.ProfilesService.findALL();
   }
   @Get(':id') //as the id is passed in url as param as :id
-  findOne(@Param('id') id: String) {
-     return this.ProfilesService.findOne(id);
+  findOne(@Param('id', ParseUUIDPipe) id: UUID) {
+    //here we are converting the id from req param to uuid using built-in pipe
+    return this.ProfilesService.findOne(id);
   }
   @Post() //here we are implementing the post method
   create(@Body() body: CreateProfileDto) {
@@ -31,12 +34,15 @@ export class ProfilesController {
     return this.ProfilesService.create(body);
   }
   @Put(':id') //updating the profile based on id
-  update(@Param('id') id: string, @Body() UpdateProfileDto: UpdateProfileDto) {
+  update(
+    @Param('id', ParseUUIDPipe) id: UUID,
+    @Body() UpdateProfileDto: UpdateProfileDto,
+  ) {
     return this.ProfilesService.updateProfile(id, UpdateProfileDto);
   }
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)   
-  remove(@Param('id') id: string):void {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  remove(@Param('id', ParseUUIDPipe) id: UUID): void {   //same here using the built-in pipe we are transforming the id passed through req url into uuid
     //here we are using Delete method with function remove
     return this.ProfilesService.deleteOne(id);
   }
