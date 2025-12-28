@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 
-@Injectable()
+@Injectable() //here the decorator injectable means this class consisting various methods or factories can be injected in various parts of this application
 export class ProfilesService {
   private profiles = [
     {
