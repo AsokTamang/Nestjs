@@ -53,9 +53,9 @@ export class ProfilesService {
     const profileIndex = this.profiles.findIndex((profile)=>profile.id === id);
     if (profileIndex>-1){   //if there is no any element having given provided id then the findIndex method returns -1, which is why we are comparing with -1 here
      this.profiles.splice(profileIndex,1)  //here we are removing one item from the given profileIndex from the given array
-     return
+     return 
     }
-    return
+    throw new NotFoundException()
    
   }
 }
