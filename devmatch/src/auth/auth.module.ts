@@ -6,7 +6,7 @@ import { User } from 'src/profiles/entity/profile.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports:[ProfilesModule,TypeOrmModule.forFeature([User])],
+  imports:[ProfilesModule,TypeOrmModule.forFeature([User])],   //here typeORM.forFeature enable this auth module to use the User entity
   controllers: [AuthController],
   providers: [AuthService]
 })

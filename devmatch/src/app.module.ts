@@ -2,24 +2,24 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProfilesModule } from './profiles/profiles.module';
-import { ProfilesService } from './profiles/profiles.service';
-import { ProfilesController } from './profiles/profiles.controller';
 import { AuthModule } from './auth/auth.module';
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { User } from './profiles/entity/profile.entity';
+import { DevtoolsModule } from '@nestjs/devtools-integration';
 
 @Module({
   imports: [
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production',
+    }),
     ConfigModule.forRoot({
       isGlobal: true, //here we are making the config service global which means no need to import this config service manually on every module
       //where we use the credentials of .env file
       envFilePath: '.env.development.local',
     }),
-     ProfilesModule,
+    ProfilesModule,
     AuthModule,
     TypeOrmModule.forRootAsync({
       inject: [ConfigService], //here we are using configService inside typeorm
@@ -35,9 +35,9 @@ import { User } from './profiles/entity/profile.entity';
           synchronize: false,
         };
       },
-    })
+    }),
   ],
-  controllers: [AppController, ProfilesController, AuthController],
-  providers: [AppService, ProfilesService, AuthService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

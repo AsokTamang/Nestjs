@@ -50,6 +50,6 @@ export class ProfilesController {
   remove(@Param('id') id: string): void {
     //same here using the built-in pipe we are transforming the id passed through req url into uuid
     //here we are using Delete method with function remove
-    return this.ProfilesService.deleteOne(id);
+    this.ProfilesService.deleteOne(id);
   }
 }
