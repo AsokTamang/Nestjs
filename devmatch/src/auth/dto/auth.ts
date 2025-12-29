@@ -7,5 +7,5 @@ export class AuthDto {
   @IsString()
   @IsNotEmpty()
   @Length(5, 10)
-  password: string;
+  pass: string;
 }

@@ -1,13 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth';
+import type { Request } from 'express';
 @Controller('auth')
 export class AuthController {
   constructor(private AuthService: AuthService) {}
 
   @Post('signin')
-  Login(@Body() reqfield: AuthDto) {
-    const { username, password } = reqfield;
-    return this.AuthService.isvalid(username, password);
+  Login(@Req() req:Request, @Body() reqfield: AuthDto) {  //here the first req means the whole request where as the second reqfield means it is found in the body of req url
+   
+    return this.AuthService.isvalid(req,reqfield);
   }
 }
