@@ -8,13 +8,33 @@ import { AuthModule } from './auth/auth.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [ProfilesModule, AuthModule, ConfigModule.forRoot({
-    isGlobal:true,   //here we are making the config service global which means no need to import this config service manually on every module
-    //where we use the credentials of .env file
-    envFilePath:'.env.development.local'
-  })],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true, //here we are making the config service global which means no need to import this config service manually on every module
+      //where we use the credentials of .env file
+      envFilePath: '.env.development.local',
+    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService], //here we are using configService inside typeorm
+      async useFactory(config: ConfigService) {
+        return {
+          type: 'mysql',
+          host: 'localhost',
+          username: config.get('username'),
+          password: config.get('password'),
+          port: 3306,
+          database: 'users',
+          synchronize: false,
+        };
+      },
+    }),
+    ProfilesModule,
+    AuthModule,
+  ],
   controllers: [AppController, ProfilesController, AuthController],
   providers: [AppService, ProfilesService, AuthService],
 })
