@@ -33,25 +33,19 @@ export class ProfilesService {
     await this.userRepo.insert(newData);    //here we are inserting the new user
     return 'User added successfully';
   }
-  updateProfile(id: string, body: UpdateProfileDto) {
+  async updateProfile(id: string, body: UpdateProfileDto) {
     const profile = this.findOne(id);
     if (!profile) {
       throw new NotFoundException('Profile not found!');
     }
-    Object.assign(profile, body); //here we are updating the info using id and body
-
-    return profile;
+    const {firstName,lastName,username,password }=body;
+    const hassedPW = await bcrypt.hash(password,10)
+    await this.userRepo.update({id:Number(id)},{firstName,lastName,username,password:hassedPW})
+    return 'User updated successfully'
+    
   }
   deleteOne(id: string) {
-    const profileIndex = this.profiles.findIndex(
-      (profile) => profile.id === id,
-    );
-    if (profileIndex > -1) {
-      //if there is no any element having given provided id then the findIndex method returns -1, which is why we are comparing with -1 here
-      this.profiles.splice(profileIndex, 1); //here we are removing one item from the given profileIndex from the given array
-      return;
-    }
-    throw new NotFoundException();
+  
   }
   isValid(username: string, password: string) {
     const existing = this.profiles.find(
