@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ProfilesController } from './profiles.controller';
 import { ProfilesService } from './profiles.service';
-
+import { User } from './entity/profile.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
+  imports:[TypeOrmModule.forFeature([User])],     //here now with this import we can use User entity from our profile module service
   controllers: [ProfilesController],
   providers: [ProfilesService],
   exports:[ProfilesService]  //here we are making this profilService sharable across our entire application'

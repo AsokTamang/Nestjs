@@ -10,6 +10,7 @@ import { AuthService } from './auth/auth.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
+import { User } from './profiles/entity/profile.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,8 @@ import { ConfigService } from '@nestjs/config';
       //where we use the credentials of .env file
       envFilePath: '.env.development.local',
     }),
+     ProfilesModule,
+    AuthModule,
     TypeOrmModule.forRootAsync({
       inject: [ConfigService], //here we are using configService inside typeorm
       async useFactory(config: ConfigService) {
@@ -28,12 +31,11 @@ import { ConfigService } from '@nestjs/config';
           password: config.get('password'),
           port: 3306,
           database: 'users',
+          entities: [User],
           synchronize: false,
         };
       },
-    }),
-    ProfilesModule,
-    AuthModule,
+    })
   ],
   controllers: [AppController, ProfilesController, AuthController],
   providers: [AppService, ProfilesService, AuthService],
