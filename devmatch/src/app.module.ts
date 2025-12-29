@@ -32,7 +32,7 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
           port: 3306,
           database: 'users',
           entities: [User],
-          synchronize: false,
+          synchronize: true,   //here we are using synchornize true inorder to create table if the table doesnot exist
         };
       },
     }),

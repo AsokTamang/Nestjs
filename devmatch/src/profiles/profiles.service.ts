@@ -28,8 +28,8 @@ export class ProfilesService {
     //this req comes from the controller
     const { firstName, lastName, username, password } = body;
     const hassedPW = await bcrypt.hash(password, 10);
-    const newData = { firstName, lastName, username, hassedPW };
-    await this.userRepo.insert(newData); //here we are inserting the new user
+    const newData = { firstName, lastName, username };
+    await this.userRepo.insert({ ...newData, password: hassedPW }); //here we are inserting the new user
     return 'User added successfully';
   }
   async updateProfile(id: string, body: UpdateProfileDto) {

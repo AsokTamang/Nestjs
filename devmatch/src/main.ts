@@ -1,6 +1,7 @@
 import { NestFactory, PartialGraphHost } from '@nestjs/core';
 import { AppModule } from './app.module';
 import fs from 'node:fs';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -10,6 +11,7 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000, () =>
     console.log(`nest app running at port:http://localhost:${3000}`),
   );
+  app.useGlobalPipes(new ValidationPipe());
 }
 bootstrap().catch((err) => {
   fs.writeFileSync('graph.json', PartialGraphHost.toString() ?? '');

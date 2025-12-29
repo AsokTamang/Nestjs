@@ -29,7 +29,7 @@ export class ProfilesController {
   }
   @Post() //here we are implementing the post method
   create(@Body() body: CreateProfileDto) {
-    //here we are assigning that the name and the description passed from the req body must be like the name and description as in dto
+   
     //if any bad req is made then nest automatically throws error
     try {
       return this.ProfilesService.create(body);
