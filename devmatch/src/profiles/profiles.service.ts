@@ -11,8 +11,10 @@ import bcrypt from 'bcrypt';
 export class ProfilesService {
   constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
 
-  findALL() {
-    return this.userRepo.find(); //this retrieves all the data information from database
+  async findALL() {
+    const all = await this.userRepo.find(); //this returns the array of objects
+    const final = all.map(({ password, ...data }) => data); //here we are exluding the password
+    return final; //this retrieves all the data information from database
   }
   async findOne(id: string) {
     const existing = await this.userRepo.findOneBy({ id: Number(id) }); //as the passed id is in string through req url , we are converting the passed id into Number

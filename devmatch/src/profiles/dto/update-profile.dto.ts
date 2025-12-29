@@ -1,12 +1,16 @@
-import { IsString,Length,IsEmail } from "class-validator"
+import { IsString, Length, IsEmail, IsNotEmpty } from 'class-validator';
 export class UpdateProfileDto {
-    @Length(3, 10)
-      @IsString()
-      firstName: string; 
-      @IsString()
-      lastName: string;
-      @IsEmail()
-      username:string;
-      @Length(5,8)
-      password:string;
+  @Length(3, 10)
+  @IsNotEmpty()
+  @IsString()
+  firstName: string;
+  @IsNotEmpty()
+  @IsString()
+  lastName: string;
+  @IsNotEmpty()
+  @IsEmail()
+  username: string;
+  @IsNotEmpty()
+  @Length(5, 8)
+  password: string;
 }
