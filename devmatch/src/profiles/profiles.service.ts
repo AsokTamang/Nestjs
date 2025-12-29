@@ -9,37 +9,18 @@ import { Repository } from 'typeorm';
 
 @Injectable() //here the decorator injectable means this class consisting various methods or factories can be injected in various parts of this application
 export class ProfilesService {
-  constructor(@InjectRepository(User) userRepo: Repository<User>) {}
-  private profiles = [
-    {
-      id: randomUUID(),
-      name: 'Brianna Watts',
-      username: 'brian11@gmail.com',
-      password: 'hello123',
-      description: `Looking for someone to merge with my heart. I’m a full-stack romantic who refactors my feelings until they pass all tests. Bonus points if you can debug my issues while we pair program over coffee. Let’s commit to something beautiful together.`,
-    },
-    {
-      id: randomUUID(),
-      name: 'Jasper Quinn',
-      username: 'jasper@gmail.com',
-      password: 'hello12345',
-      description: `Seeking a partner in crime to compile my heart. Must be comfortable with the terminal because I only speak fluent bash. Swipe right if you can appreciate a good kernel panic every now and then.`,
-    },
-    {
-      id: randomUUID(),
-      name: 'Leo Park',
-      username: 'leo@gmail.com',
-      password: 'hello111',
-      description: `You think you know VIM? Try Neovim. I'll make your modal dreams come true. Want to escape the matrix and explore the perfect keyboard shortcut for love?`,
-    },
-  ];
+  constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
+
   findALL() {
-    return this.profiles; //we can return the private data only using this.
+    return this.userRepo.find(); //this retrieves all the data information from database
   }
-  findOne(id: String) {
-    const existing = this.profiles.find((profile) => profile.id === id);
+  async findOne(id: string) {
+    const existing = await this.userRepo.findOneBy({ id: Number(id) });   //as the passed id is in string through req url , we are converting the passed id into Number 
+    //as the id is a primary key
+    
     if (existing) {
-      return existing;
+      const {password,...data} = existing
+      return data;  //as the password is secret , we mustnot return the password to the outer world
     }
     throw new NotFoundException();
   }
@@ -47,7 +28,7 @@ export class ProfilesService {
     //this req comes from the controller
     const { name, description, username, password } = body;
     const newData = { id: randomUUID(), name, description, username, password };
-    this.profiles.push(newData);
+
     return newData;
   }
   updateProfile(id: string, body: UpdateProfileDto) {
