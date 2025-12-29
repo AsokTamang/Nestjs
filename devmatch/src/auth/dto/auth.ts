@@ -1,9 +1,11 @@
-import { IsString,Length
- } from "class-validator"
+import { IsString, Length, IsNotEmpty, IsEmail } from 'class-validator';
 export class AuthDto {
-    @IsString()
-    username:string
-    @IsString()
-    @Length(5,10)
-    password:string
+  @IsString()
+  @IsEmail()
+  @IsNotEmpty()
+  username: string;
+  @IsString()
+  @IsNotEmpty()
+  @Length(5, 10)
+  password: string;
 }
