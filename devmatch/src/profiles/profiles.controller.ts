@@ -30,7 +30,7 @@ export class ProfilesController {
     return this.ProfilesService.findOne(id);
   }
   @Post() //here we are implementing the post method
-  create(@Body(new ValidationPipe()) body: CreateProfileDto) {
+  create(@Body() body: CreateProfileDto) {
     //here we are assigning that the name and the description passed from the req body must be like the name and description as in dto
     //if any bad req is made then nest automatically throws error
     try {
@@ -42,7 +42,7 @@ export class ProfilesController {
   @Put(':id') //updating the profile based on id
   update(
     @Param('id', ParseUUIDPipe) id: UUID,
-    @Body(new ValidationPipe({ whitelist:true, forbidNonWhitelisted:true }))     //here this property forbidNonWhitelisted will forbit other extra key-value pair from the req body
+    @Body()
     UpdateProfileDto: UpdateProfileDto, //here we are using the validation pipe on the req body of put method of this api
   ) {
     return this.ProfilesService.updateProfile(id, UpdateProfileDto);

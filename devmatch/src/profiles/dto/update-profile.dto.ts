@@ -1,8 +1,12 @@
-import { IsString,Length } from "class-validator"
+import { IsString,Length,IsEmail } from "class-validator"
 export class UpdateProfileDto {
-    @IsString()
-    @Length(3)
-    name:string
-    @IsString()
-    description:string
+    @Length(3, 10)
+      @IsString()
+      name: string; 
+      @IsString()
+      description: string;
+      @IsEmail()
+      username:string;
+      @Length(5,8)
+      password:string;
 }
