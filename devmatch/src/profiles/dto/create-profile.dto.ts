@@ -5,9 +5,9 @@ export class CreateProfileDto {
   //data transfer object
   @Length(3, 10)
   @IsString()
-  name: string;
+  firstName: string;
   @IsString()
-  description: string;
+  lastName: string;
   @IsEmail()
   username: string;
   @Length(5, 8)

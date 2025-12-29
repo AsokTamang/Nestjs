@@ -6,6 +6,7 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/profile.entity';
 import { Repository } from 'typeorm';
+import bcrypt from 'bcrypt'
 
 @Injectable() //here the decorator injectable means this class consisting various methods or factories can be injected in various parts of this application
 export class ProfilesService {
@@ -24,12 +25,13 @@ export class ProfilesService {
     }
     throw new NotFoundException();
   }
-  create(body: CreateProfileDto) {
+  async create(body: CreateProfileDto) {
     //this req comes from the controller
-    const { name, description, username, password } = body;
-    const newData = { id: randomUUID(), name, description, username, password };
-
-    return newData;
+    const { firstName, lastName, username, password } = body;
+    const hassedPW=await bcrypt.hash(password,10);    
+    const newData = {  firstName, lastName, username, hassedPW };
+    await this.userRepo.insert(newData);    //here we are inserting the new user
+    return 'User added successfully';
   }
   updateProfile(id: string, body: UpdateProfileDto) {
     const profile = this.findOne(id);
