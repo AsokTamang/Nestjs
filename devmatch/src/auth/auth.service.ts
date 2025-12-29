@@ -26,8 +26,10 @@ export class AuthService {
     }
     //using jwt method
      const {password,...data} = existing
-     const payload=data
-     const token=await this.jwtService.signAsync(payload);
+     const payload=data   
+     const token=await this.jwtService.signAsync(payload);  //here we are generating a token using jwtservice
+     return token  //if the login is successful then we return the token for the frontend to store it somewhere so that the loggedin user can access protected routes
+
     
     
     
