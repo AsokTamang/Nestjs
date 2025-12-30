@@ -10,9 +10,11 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectRepository(User) 
-  private jwtService:JwtService
-  ,private userRepo: Repository<User>) {}
+  constructor(
+    @InjectRepository(User)
+    private userRepo: Repository<User>,
+    private jwtService: JwtService,
+  ) {}
 
   async isvalid(req: Request, bodyfield: AuthDto): Promise<string | void> {
     const { username, pass } = bodyfield;
@@ -25,15 +27,11 @@ export class AuthService {
       throw new Error('Invalid password');
     }
     //using jwt method
-     const {password,...data} = existing
-     const payload=data   
-     const token=await this.jwtService.signAsync(payload);  //here we are generating a token using jwtservice
-     return token  //if the login is successful then we return the token for the frontend to store it somewhere so that the loggedin user can access protected routes
+    const { password, ...data } = existing;
+    const payload = data;
+    const token = await this.jwtService.signAsync(payload); //here we are generating a token using jwtservice
+    return token; //if the login is successful then we return the token for the frontend to store it somewhere so that the loggedin user can access protected routes
 
-    
-    
-    
-    
     //using expression session
     //req.session.userId = existing.id; //if the user is logged in successfully then we provide the user's id in session of req as userId
     //return req.session.userId; //here if the user is authenticated then we must assign them a token for authorization

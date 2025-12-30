@@ -9,9 +9,11 @@ import { ConfigService } from '@nestjs/config';
 import { User } from './profiles/entity/profile.entity';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from 'auth.gaurd';
+import { AuthGuard } from 'src/auth.gaurd';
+import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [
+    JwtModule,
     DevtoolsModule.register({
       http: process.env.NODE_ENV !== 'production',
     }),

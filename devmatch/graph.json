@@ -14,7 +14,7 @@
         "transient": false,
         "exported": false,
         "token": "JwtModule",
-        "initTime": 2.9085000000000036
+        "initTime": 10.613399999999956
       }
     },
     "203550704": {
@@ -30,7 +30,7 @@
         "transient": false,
         "exported": true,
         "token": "ExternalContextCreator",
-        "initTime": 4.274400000000014
+        "initTime": 15.221099999999979
       }
     },
     "211572259": {
@@ -57,7 +57,7 @@
         "transient": false,
         "exported": false,
         "token": "InternalCoreModule",
-        "initTime": 4.7391999999999825
+        "initTime": 16.570600000000013
       }
     },
     "233936880": {
@@ -119,7 +119,7 @@
         "transient": false,
         "exported": false,
         "token": "SandboxedCodeExecutor",
-        "initTime": 4.1689000000001215
+        "initTime": 13.716800000000148
       }
     },
     "400681591": {
@@ -135,7 +135,7 @@
         "transient": false,
         "exported": true,
         "token": "DiscoveryService",
-        "initTime": 4.030499999999847
+        "initTime": 12.808199999999943
       }
     },
     "430443484": {
@@ -186,7 +186,7 @@
         "transient": false,
         "exported": true,
         "token": "Reflector",
-        "initTime": 4.59739999999988
+        "initTime": 16.13040000000001
       }
     },
     "687352615": {
@@ -231,6 +231,22 @@
         "internal": false
       }
     },
+    "866005236": {
+      "id": "866005236",
+      "label": "CONFIGURABLE_MODULE_OPTIONS[9957b2fb7a7cbebcfe1c0]",
+      "parent": "-1033621697",
+      "metadata": {
+        "type": "provider",
+        "internal": false,
+        "sourceModuleName": "DevtoolsModule",
+        "durable": false,
+        "static": true,
+        "scope": 0,
+        "transient": false,
+        "exported": false,
+        "token": "CONFIGURABLE_MODULE_OPTIONS[9957b2fb7a7cbebcfe1c0]"
+      }
+    },
     "915774976": {
       "id": "915774976",
       "label": "ApplicationConfig",
@@ -260,7 +276,7 @@
         "transient": false,
         "exported": true,
         "token": "Symbol(CONFIG_SERVICE)",
-        "initTime": 3.8115999999999985
+        "initTime": 12.320200000000114
       }
     },
     "1014874916": {
@@ -293,7 +309,7 @@
         "transient": false,
         "exported": false,
         "token": "ProfilesModule",
-        "initTime": 3.0252000000000407
+        "initTime": 10.769300000000158
       }
     },
     "1063746662": {
@@ -309,7 +325,7 @@
         "transient": false,
         "exported": true,
         "token": "CONFIGURATION_TOKEN",
-        "initTime": 3.0515000000000327
+        "initTime": 10.820099999999911
       }
     },
     "1070370213": {
@@ -343,22 +359,6 @@
         "token": "ModuleRef"
       }
     },
-    "1367525045": {
-      "id": "1367525045",
-      "label": "CONFIGURABLE_MODULE_OPTIONS[27ed5f90e3546cf8b84e5]",
-      "parent": "-1033621697",
-      "metadata": {
-        "type": "provider",
-        "internal": false,
-        "sourceModuleName": "DevtoolsModule",
-        "durable": false,
-        "static": true,
-        "scope": 0,
-        "transient": false,
-        "exported": false,
-        "token": "CONFIGURABLE_MODULE_OPTIONS[27ed5f90e3546cf8b84e5]"
-      }
-    },
     "1404752088": {
       "id": "1404752088",
       "label": "AuthController",
@@ -388,7 +388,7 @@
         "transient": false,
         "exported": true,
         "token": "Reflector",
-        "initTime": 5.476499999999987
+        "initTime": 17.69010000000003
       }
     },
     "1475573941": {
@@ -510,7 +510,7 @@
         "transient": false,
         "exported": false,
         "token": "ConfigModule",
-        "initTime": 3.1361000000001695
+        "initTime": 11.05639999999994
       }
     },
     "1787828844": {
@@ -527,7 +527,7 @@
         "transient": false,
         "exported": false,
         "token": "ConfigHostModule",
-        "initTime": 3.1036999999998898
+        "initTime": 10.89409999999998
       }
     },
     "1817334964": {
@@ -560,7 +560,7 @@
         "transient": false,
         "exported": true,
         "token": "REQUEST",
-        "initTime": 4.033000000000129
+        "initTime": 14.82510000000002
       }
     },
     "1989588516": {
@@ -656,7 +656,7 @@
         "transient": true,
         "exported": true,
         "token": "INQUIRER",
-        "initTime": 4.022399999999834
+        "initTime": 14.799800000000005
       }
     },
     "-26938366": {
@@ -672,7 +672,7 @@
         "transient": false,
         "exported": true,
         "token": "ModulesContainer",
-        "initTime": 4.258399999999938
+        "initTime": 15.204999999999927
       }
     },
     "-326832201": {
@@ -688,7 +688,7 @@
         "transient": false,
         "exported": true,
         "token": "HttpAdapterHost",
-        "initTime": 4.246800000000121
+        "initTime": 15.18139999999994
       }
     },
     "-702581189": {
@@ -704,7 +704,7 @@
         "transient": false,
         "exported": true,
         "token": "LazyModuleLoader",
-        "initTime": 4.244500000000016
+        "initTime": 15.174999999999955
       }
     },
     "-1904419534": {
@@ -720,7 +720,7 @@
         "transient": false,
         "exported": true,
         "token": "SerializedGraph",
-        "initTime": 3.638200000000097
+        "initTime": 15.000299999999925
       }
     },
     "-19112576": {
@@ -747,7 +747,7 @@
         "transient": false,
         "exported": false,
         "token": "AppModule",
-        "initTime": 3.643199999999979
+        "initTime": 15.049400000000105
       }
     },
     "-71302842": {
@@ -795,7 +795,7 @@
         "transient": false,
         "exported": false,
         "token": "AppService",
-        "initTime": 3.6291000000001077
+        "initTime": 15.01909999999998
       }
     },
     "-1888273744": {
@@ -838,7 +838,7 @@
         "transient": false,
         "exported": false,
         "token": "DevtoolsModule",
-        "initTime": 3.3534000000001924
+        "initTime": 11.893399999999929
       }
     },
     "-751962311": {
@@ -881,7 +881,7 @@
         "transient": false,
         "exported": false,
         "token": "DiscoveryModule",
-        "initTime": 3.248299999999972
+        "initTime": 11.21810000000005
       }
     },
     "-501891371": {
@@ -929,7 +929,7 @@
         "transient": false,
         "exported": true,
         "token": "MetadataScanner",
-        "initTime": 3.238299999999981
+        "initTime": 11.187200000000075
       }
     },
     "-503631789": {
@@ -1028,7 +1028,7 @@
         "transient": false,
         "exported": false,
         "token": "TypeOrmModule",
-        "initTime": 2.961999999999989
+        "initTime": 10.699400000000196
       }
     },
     "-1068388246": {
@@ -1086,7 +1086,7 @@
         "transient": false,
         "exported": false,
         "token": "AuthModule",
-        "initTime": 2.937400000000025
+        "initTime": 10.669199999999819
       }
     },
     "-120792986": {
@@ -1116,7 +1116,7 @@
         "durable": false,
         "static": true,
         "transient": false,
-        "exported": false,
+        "exported": true,
         "token": "AuthService"
       }
     },
@@ -1175,7 +1175,7 @@
         "transient": false,
         "exported": false,
         "token": "ConfigModule",
-        "initTime": 2.875099999999975
+        "initTime": 10.559400000000096
       }
     },
     "-408540750": {
@@ -1224,7 +1224,7 @@
         "transient": false,
         "exported": false,
         "token": "TypeOrmModule",
-        "initTime": 2.851599999999962
+        "initTime": 10.520800000000008
       }
     },
     "-223917668": {
@@ -1937,15 +1937,16 @@
     "cause": {
       "type": "unknown-dependencies",
       "context": {
-        "index": 1,
+        "index": 0,
         "dependencies": [
-          "UserRepository",
-          "Repository"
+          "JwtService",
+          "Reflector",
+          "ConfigService"
         ],
-        "name": "Repository"
+        "name": "JwtService"
       },
-      "moduleId": "-1134487807",
-      "nodeId": "-793915935"
+      "moduleId": "-19112576",
+      "nodeId": "-1888273744"
     }
   }
 }

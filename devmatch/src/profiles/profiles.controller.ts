@@ -19,7 +19,6 @@ import { CreateProfileDto } from './dto/create-profile.dto';
 export class ProfilesController {
   constructor(private ProfilesService: ProfilesService) {} //here as the data variable in profileservice is private, we are using constructor inorder to access this private data var
   @Get() //this is our get route
- 
   findAll() {
     //as in the req url the query is always in string, so we must pass the string location inside query decorator then we are also settign the type of location as we are using ts
     return this.ProfilesService.findALL();
