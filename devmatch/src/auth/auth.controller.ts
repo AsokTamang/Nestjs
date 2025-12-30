@@ -6,7 +6,7 @@ import { Public } from 'publicConfigure';
 @Controller('auth')
 export class AuthController {
   constructor(private AuthService: AuthService) {}
-  @Public() //making this endpoint public
+  @Public() //making this endpoint public as we have made our authgaurd global
   @Post('signin') // endpoint is /auth/signin
   Login(@Req() req: Request, @Body() reqfield: AuthDto) {
     //here the first req means the whole request where as the second reqfield means it is found in the body of req url

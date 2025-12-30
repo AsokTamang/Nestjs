@@ -21,7 +21,7 @@ import { AuthGuard } from 'auth.gaurd';
       envFilePath: '.env.development.local',
     }),
     ProfilesModule,
-    AuthModule,
+    AuthModule,   
     TypeOrmModule.forRootAsync({
       inject: [ConfigService], //here we are using configService inside typeorm
       async useFactory(config: ConfigService) {
@@ -39,7 +39,7 @@ import { AuthGuard } from 'auth.gaurd';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService,
+  providers: [AppService,   //here we are making this authgaurd class global which means all the endpoints of our app will be protected 
      {
       provide: APP_GUARD,
       useClass: AuthGuard,
