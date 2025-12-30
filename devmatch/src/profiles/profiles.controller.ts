@@ -14,10 +14,12 @@ import {
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ProfilesService } from './profiles.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
+
 @Controller('profiles') //this is our route which is like this /profiles
 export class ProfilesController {
   constructor(private ProfilesService: ProfilesService) {} //here as the data variable in profileservice is private, we are using constructor inorder to access this private data var
   @Get() //this is our get route
+ 
   findAll() {
     //as in the req url the query is always in string, so we must pass the string location inside query decorator then we are also settign the type of location as we are using ts
     return this.ProfilesService.findALL();
@@ -29,7 +31,6 @@ export class ProfilesController {
   }
   @Post() //here we are implementing the post method
   create(@Body() body: CreateProfileDto) {
-   
     //if any bad req is made then nest automatically throws error
     try {
       return this.ProfilesService.create(body);

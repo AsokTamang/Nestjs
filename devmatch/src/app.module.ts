@@ -8,7 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { User } from './profiles/entity/profile.entity';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
-
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from 'auth.gaurd';
 @Module({
   imports: [
     DevtoolsModule.register({
@@ -16,7 +17,7 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
     }),
     ConfigModule.forRoot({
       isGlobal: true, //here we are making the config service global which means no need to import this config service manually on every module
-      //where we use the credentials of .env file
+      //where we use the credentials of .env file   //so we can easily access this credential using process.env.
       envFilePath: '.env.development.local',
     }),
     ProfilesModule,
@@ -38,6 +39,11 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,
+     {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule {}

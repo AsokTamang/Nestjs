@@ -3,17 +3,24 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { ProfilesModule } from 'src/profiles/profiles.module';
 import { JwtModule } from '@nestjs/jwt';
-
+import { AuthGuard } from 'auth.gaurd';
+import { ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports:[ProfilesModule,
-     JwtModule.register({    //here we are registering the jwtmodule in our auth module so that we can use jwtService to generate the jwt when the login is successful
-      global: true,
-      secret: process.env.secret,
-      signOptions: { expiresIn: '1d' },   //here we are making this token available for 1d
+  imports: [
+    ProfilesModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('secret'),   //inorder to access the secret key using config service, we are using registerasync on jwtmodule 
+        signOptions: { expiresIn: '1d' },
+      }),
+      inject: [ConfigService],
     }),
-  ],   //here typeORM.forFeature enable this auth module to use the User entity
+  ],
   controllers: [AuthController],
-  providers: [AuthService]
+  providers: [AuthService],
+  exports: [AuthGuard],
 })
 export class AuthModule {}
