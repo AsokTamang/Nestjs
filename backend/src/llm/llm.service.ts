@@ -24,9 +24,11 @@ export class LlmService {
     ];
 
     const response = await client.chat.completions.create({
-      model: 'gpt-5',
+      model: 'gpt-4',
       messages: messages,
-      reasoning_effort:"medium"
+      temperature:0.2 ,  //here we are making the temperature low which makes the output more focused and deterministic
+  //here reasoning_effort makes the model to think more deeply 
+
     });
     return response.choices[0].message.content; //here we are returning the content returned by our ai model
   
