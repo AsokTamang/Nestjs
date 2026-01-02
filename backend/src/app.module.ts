@@ -6,7 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
-import { User } from './profiles/entity/profile.entity';
+import { User } from '../models/profile.entity';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from 'src/auth.gaurd';

@@ -2,7 +2,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entity/profile.entity';
+import { User } from '../../models/profile.entity';
 import { Repository } from 'typeorm';
 import bcrypt from 'bcrypt';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { NotFoundException } from '@nestjs/common';
-import { User } from 'src/profiles/entity/profile.entity';
+import { User } from 'models/profile.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import bcrypt from 'bcrypt';
