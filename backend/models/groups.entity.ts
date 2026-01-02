@@ -4,7 +4,8 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
-  OneToMany
+  OneToMany,
+  
 } from 'typeorm';
 import { User } from './profile.entity';
 import { Expense } from './expense.entity';
@@ -15,12 +16,14 @@ export class Group {
   id: number;
   @Column()
   name: string; //name of the group
-
+   //RELATIONSHIP WITH USER
   @ManyToMany(() => User, (User) => User.groups)
   @JoinTable()
   //members is the group member
   members: User[]; //here we are declaring that this model called Group has relation with many users and these users are stored inside an array called members
   
+
+  //RELATIONSHIP WITH EXPENSE
   @OneToMany(() => Expense, (Expense) => Expense.expenseGroup)   
   groupExpense: Expense[]; //here we are declaring that this one model called expense has relation with many expense models
   
