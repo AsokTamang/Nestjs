@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn,ManyToMany } from 'typeorm';
-import { Group } from './groups.enitity';
+import { Group } from './groups.entity';
 
 @Entity()
 export class User {
@@ -21,6 +21,4 @@ export class User {
  
   @ManyToMany(() => Group, (Group) => Group.members)
   groups: Group[]; //
-
-
 }
