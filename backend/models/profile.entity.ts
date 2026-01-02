@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn,ManyToMany } from 'typeorm';
+import { Group } from './groups.enitity';
 
 @Entity()
 export class User {
@@ -16,4 +17,10 @@ export class User {
 
   @Column()
   password: string;
+  
+ 
+  @ManyToMany(() => Group, (Group) => Group.members)
+  groups: Group[]; //
+
+
 }
