@@ -11,9 +11,6 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from 'src/auth.gaurd';
 import { JwtModule } from '@nestjs/jwt';
-import { LlmService } from './llm/llm.service';
-import { LlmController } from './llm/llm.controller';
-import { LlmModule } from './llm/llm.module';
 @Module({
   imports: [
     JwtModule,
@@ -41,14 +38,14 @@ import { LlmModule } from './llm/llm.module';
           synchronize: true,   //here we are using synchornize true inorder to create table if the table doesnot exist
         };
       },
-    }), LlmModule,
+    }),
   ],
-  controllers: [AppController, LlmController],
+  controllers: [AppController],
   providers: [AppService,   //here we are making this authgaurd class global which means all the endpoints of our app will be protected 
      {
       provide: APP_GUARD,
       useClass: AuthGuard,
-    }, LlmService,
+    }
   ],
 })
 export class AppModule {}

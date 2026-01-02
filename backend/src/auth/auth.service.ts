@@ -4,7 +4,7 @@ import { User } from 'src/profiles/entity/profile.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import bcrypt from 'bcrypt';
-import { AuthDto } from './dto/auth';
+import { AuthDto, CreateProfileDto } from './dto/auth';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
 
@@ -17,8 +17,8 @@ export class AuthService {
   ) {}
 
   async isvalid(req: Request, bodyfield: AuthDto): Promise<string | void> {
-    const { username, pass } = bodyfield;
-    const existing = await this.userRepo.findOneBy({ username: username }); //here we are finding the user by the username
+    const { email, pass } = bodyfield;
+    const existing = await this.userRepo.findOneBy({ email: email }); //here we are finding the user by the username
     if (!existing) {
       throw new NotFoundException('No user account exists under this username');
     }
@@ -36,4 +36,12 @@ export class AuthService {
     //req.session.userId = existing.id; //if the user is logged in successfully then we provide the user's id in session of req as userId
     //return req.session.userId; //here if the user is authenticated then we must assign them a token for authorization
   }
+   async create(body: CreateProfileDto) {
+      //this req comes from the controller
+      const { firstName, lastName, email, password } = body;
+      const hassedPW = await bcrypt.hash(password, 10);
+      const newData = { firstName, lastName, email };
+      await this.userRepo.insert({ ...newData, password: hassedPW }); //here we are inserting the new user
+      return 'User added successfully';
+    }
 }

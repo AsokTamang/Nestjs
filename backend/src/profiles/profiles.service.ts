@@ -1,6 +1,5 @@
 //the profile service consists of all the logics
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/profile.entity';
@@ -26,24 +25,17 @@ export class ProfilesService {
     }
     throw new NotFoundException();
   }
-  async create(body: CreateProfileDto) {
-    //this req comes from the controller
-    const { firstName, lastName, username, password } = body;
-    const hassedPW = await bcrypt.hash(password, 10);
-    const newData = { firstName, lastName, username };
-    await this.userRepo.insert({ ...newData, password: hassedPW }); //here we are inserting the new user
-    return 'User added successfully';
-  }
+ 
   async updateProfile(id: string, body: UpdateProfileDto) {
     const profile = await this.findOne(id);
     if (!profile) {
       throw new NotFoundException('Profile not found!');
     }
-    const { firstName, lastName, username, password } = body;
+    const { firstName, lastName, email, password } = body;
     const hassedPW = await bcrypt.hash(password, 10);
     await this.userRepo.update(
       { id: Number(id) },
-      { firstName, lastName, username, password: hassedPW },
+      { firstName, lastName, email, password: hassedPW },
     );
     return 'User updated successfully';
   }

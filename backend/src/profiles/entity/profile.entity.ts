@@ -12,7 +12,7 @@ export class User {
   lastName: string;
 
   @Column({unique:true})
-  username: string;
+  email: string;
 
   @Column()
   password: string;

@@ -1,8 +1,9 @@
 import { Body, Controller, Post, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthDto } from './dto/auth';
+import { AuthDto, CreateProfileDto } from './dto/auth';
 import type { Request } from 'express';
 import { Public } from 'publicConfigure';
+
 @Controller('auth')
 export class AuthController {
   constructor(private AuthService: AuthService) {}
@@ -12,5 +13,15 @@ export class AuthController {
     //here the first req means the whole request where as the second reqfield means it is found in the body of req url
 
     return this.AuthService.isvalid(req, reqfield);
+  }
+  @Public()
+  @Post('signup') //here we are implementing the post method and making the signup route also public
+  create(@Body() body: CreateProfileDto) {
+    //if any bad req is made then nest automatically throws error
+    try {
+      return this.AuthService.create(body);
+    } catch (error) {
+      return error.message;
+    }
   }
 }

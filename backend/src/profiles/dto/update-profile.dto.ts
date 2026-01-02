@@ -9,7 +9,7 @@ export class UpdateProfileDto {
   lastName: string;
   @IsNotEmpty()
   @IsEmail()
-  username: string;
+  email: string;
   @IsNotEmpty()
   @Length(5, 8)
   password: string;

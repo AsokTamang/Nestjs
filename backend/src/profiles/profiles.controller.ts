@@ -8,12 +8,10 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  ParseUUIDPipe,
-  ValidationPipe,
 } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ProfilesService } from './profiles.service';
-import { CreateProfileDto } from './dto/create-profile.dto';
+
 
 @Controller('profiles') //this is our route which is like this /profiles
 export class ProfilesController {
@@ -28,16 +26,8 @@ export class ProfilesController {
     //here we are converting the id from req param to uuid using built-in pipe
     return this.ProfilesService.findOne(id);
   }
-  @Post() //here we are implementing the post method
-  create(@Body() body: CreateProfileDto) {
-    //if any bad req is made then nest automatically throws error
-    try {
-      return this.ProfilesService.create(body);
-    } catch (error) {
-      return error.message;
-    }
-  }
-  @Put(':id') //updating the profile based on id
+
+  @Put('update/:id') //updating the profile based on id
   update(
     @Param('id') id: string,
     @Body()
@@ -45,7 +35,7 @@ export class ProfilesController {
   ) {
     return this.ProfilesService.updateProfile(id, UpdateProfileDto);
   }
-  @Delete(':id')
+  @Delete('delete/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string): void {
     //same here using the built-in pipe we are transforming the id passed through req url into uuid
